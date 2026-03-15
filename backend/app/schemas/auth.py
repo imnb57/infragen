@@ -1,5 +1,6 @@
 """Auth schemas — login, signup, token."""
 
+from datetime import datetime
 from pydantic import BaseModel, EmailStr, Field
 
 
@@ -34,6 +35,7 @@ class UserResponse(BaseModel):
     default_iac: str
     tenant_id: str
     is_active: bool
-    created_at: str
+    created_at: datetime
 
     model_config = {"from_attributes": True}
+
