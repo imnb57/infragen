@@ -1,6 +1,6 @@
 """User model."""
 
-from sqlalchemy import Boolean, ForeignKey, String
+from sqlalchemy import Boolean, ForeignKey, String, DateTime
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import datetime
@@ -31,7 +31,7 @@ class User(Base, UUIDMixin, TimestampMixin):
     # Status
     email_verified: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
     is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
-    last_login_at: Mapped[datetime | None] = mapped_column(nullable=True)
+    last_login_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
     # Relationships
     tenant = relationship("Tenant", back_populates="users")
