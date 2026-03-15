@@ -28,14 +28,10 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# CORS — permissive in development, restricted in production
-cors_origins = (
-    ["*"] if settings.app_env == "development"
-    else settings.backend_cors_origins
-)
+# CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=cors_origins,
+    allow_origins=settings.backend_cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
